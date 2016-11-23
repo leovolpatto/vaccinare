@@ -106,7 +106,7 @@ public class InserirCriancas extends javax.swing.JFrame {
             }
         });
 
-        selecionarSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        selecionarSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mann", "Frau" }));
 
         checkboxParto.setText("Natural");
 
@@ -301,9 +301,9 @@ public class InserirCriancas extends javax.swing.JFrame {
         }
         
         Sexo sexo = null;
-        if (selecionarSexo.getSelectedItem()==MASCULINO){
+        if (selecionarSexo.getSelectedIndex() == 0){
             sexo = Sexo.MASCULINO;
-        } else if (selecionarSexo.getSelectedItem()==FEMININO){
+        } else if (selecionarSexo.getSelectedIndex() == 1){
             sexo = Sexo.FEMININO;
         }
         
@@ -331,10 +331,10 @@ public class InserirCriancas extends javax.swing.JFrame {
             etnia = Etnia.AMARELA;
         }
         
-        if(nome.equalsIgnoreCase("") || idade <= 0 || sexo == null || etnia == null || mae.equalsIgnoreCase("")){
+        if(nome.length() == 0 || idade <= 0 || sexo == null || etnia == null || mae.length() == 0){
             Object[] options = {"OK"};
             int n = JOptionPane.showOptionDialog(null,
-                   "Preencha todos os campos ","ALERTA",
+                   "Preencha todos os campos","Erro",
                    JOptionPane.PLAIN_MESSAGE,
                    JOptionPane.QUESTION_MESSAGE,
                    null,

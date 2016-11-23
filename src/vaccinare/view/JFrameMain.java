@@ -111,7 +111,8 @@ public class JFrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVacinasActionPerformed
 
     private void jButtonCriancasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriancasActionPerformed
-            new InserirCriancas().setVisible(true);        
+        this.setVisible(false);    
+        new InserirCriancas().setVisible(true);        
     }//GEN-LAST:event_jButtonCriancasActionPerformed
      
     /**
