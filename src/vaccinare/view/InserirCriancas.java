@@ -104,7 +104,7 @@ public class InserirCriancas extends javax.swing.JFrame {
             }
         });
 
-        selecionarSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        selecionarSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mann", "Frau" }));
 
         checkboxParto.setText("Natural");
 
@@ -289,10 +289,10 @@ public class InserirCriancas extends javax.swing.JFrame {
         }
         
         Sexo sexo = null;
-        if (selecionarSexo.getSelectedItem()==MASCULINO){
-            sexo = MASCULINO;
-        } else if (selecionarSexo.getSelectedItem()==MASCULINO){
-            sexo = FEMININO;
+        if (selecionarSexo.getSelectedIndex() == 0){
+            sexo = Sexo.MASCULINO;
+        } else if (selecionarSexo.getSelectedIndex() == 1){
+            sexo = Sexo.FEMININO;
         }
         
         
@@ -308,21 +308,21 @@ public class InserirCriancas extends javax.swing.JFrame {
         
         Etnia etnia = null;
         if (selecionarBranco.isSelected()) {
-            etnia = BRANCA;
+            etnia = Etnia.BRANCA;
         } else if (selecionarNegro.isSelected()) {
-            etnia = NEGRA;
+            etnia = Etnia.NEGRA;
         } else if (selecionarPardo.isSelected()) {
-            etnia = PARDA;
+            etnia = Etnia.PARDA;
         } else if (selecionarIndigena.isSelected()) {
-            etnia = INDIGENA;
+            etnia = Etnia.INDIGENA;
         } else if (selecionarAmarela.isSelected()) {
-            etnia = AMARELA;
+            etnia = Etnia.AMARELA;
         }
         
-        if(nome.equalsIgnoreCase("") || idade <= 0 || sexo == null || etnia == null || mae.equalsIgnoreCase("")){
+        if(nome.length() == 0 || idade <= 0 || sexo == null || etnia == null || mae.length() == 0){
             Object[] options = {"OK"};
             int n = JOptionPane.showOptionDialog(null,
-                   "Message here ","Title",
+                   "Preencha todos os campos","Erro",
                    JOptionPane.PLAIN_MESSAGE,
                    JOptionPane.QUESTION_MESSAGE,
                    null,
