@@ -282,10 +282,9 @@ public class InserirCriancas extends javax.swing.JFrame {
         lista.add(s2);
        
         for (Sexo s : lista) {
-            jComboBox2.addItem(s.ordinal());
+            selecionarSexo.addItem(String.valueOf(s.ordinal()));
         }
-    
-        
+    }
     
     private void botaoConfirmaActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                        
         Crianca c;

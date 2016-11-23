@@ -47,6 +47,11 @@ public class JFrameMain extends javax.swing.JFrame {
         });
 
         jButtonCriancas.setText("Gestão de Crianças");
+        jButtonCriancas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCriancasActionPerformed(evt);
+            }
+        });
 
         jButtonSair.setText("Sair");
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
@@ -104,14 +109,11 @@ public class JFrameMain extends javax.swing.JFrame {
         new InserirVacinas().setVisible(true);
     
     }//GEN-LAST:event_jButtonVacinasActionPerformed
-    
-    
-     private void jButtonCriancasActionPerformed(java.awt.event.ActionEvent evt) {                                               
-                                         
-       this.setVisible(false);
-        new InserirCriancas().setVisible(true);
-    
-    }    
+
+    private void jButtonCriancasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriancasActionPerformed
+            new InserirCriancas().setVisible(true);        
+    }//GEN-LAST:event_jButtonCriancasActionPerformed
+     
     /**
      * @param args the command line arguments
      */
