@@ -70,6 +70,8 @@ public class InserirCriancas extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         botaoConfirma = new javax.swing.JButton();
         botaoCancela = new javax.swing.JToggleButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -146,14 +148,18 @@ public class InserirCriancas extends javax.swing.JFrame {
 
         jLabel8.setText("CRIANÇAS");
 
-        botaoConfirma.setText("Confirma");
+        botaoConfirma.setText("Inserir");
         botaoConfirma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoConfirmaActionPerformed(evt);
             }
         });
 
-        botaoCancela.setText("Cancela");
+        botaoCancela.setText("Voltar");
+
+        jButton2.setText("Excluir");
+
+        jButton3.setText("Alterar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -215,6 +221,10 @@ public class InserirCriancas extends javax.swing.JFrame {
                         .addGap(242, 242, 242))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(botaoCancela)
+                        .addGap(56, 56, 56)
+                        .addComponent(jButton2)
+                        .addGap(66, 66, 66)
+                        .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botaoConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
@@ -262,7 +272,9 @@ public class InserirCriancas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoCancela))
+                    .addComponent(botaoCancela)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap())
         );
 
@@ -290,9 +302,9 @@ public class InserirCriancas extends javax.swing.JFrame {
         
         Sexo sexo = null;
         if (selecionarSexo.getSelectedItem()==MASCULINO){
-            sexo = MASCULINO;
-        } else if (selecionarSexo.getSelectedItem()==MASCULINO){
-            sexo = FEMININO;
+            sexo = Sexo.MASCULINO;
+        } else if (selecionarSexo.getSelectedItem()==FEMININO){
+            sexo = Sexo.FEMININO;
         }
         
         
@@ -308,21 +320,21 @@ public class InserirCriancas extends javax.swing.JFrame {
         
         Etnia etnia = null;
         if (selecionarBranco.isSelected()) {
-            etnia = BRANCA;
+            etnia = Etnia.BRANCA;
         } else if (selecionarNegro.isSelected()) {
-            etnia = NEGRA;
+            etnia = Etnia.NEGRA;
         } else if (selecionarPardo.isSelected()) {
-            etnia = PARDA;
+            etnia = Etnia.PARDA;
         } else if (selecionarIndigena.isSelected()) {
-            etnia = INDIGENA;
+            etnia = Etnia.INDIGENA;
         } else if (selecionarAmarela.isSelected()) {
-            etnia = AMARELA;
+            etnia = Etnia.AMARELA;
         }
         
         if(nome.equalsIgnoreCase("") || idade <= 0 || sexo == null || etnia == null || mae.equalsIgnoreCase("")){
             Object[] options = {"OK"};
             int n = JOptionPane.showOptionDialog(null,
-                   "Message here ","Title",
+                   "Preencha todos os campos ","ALERTA",
                    JOptionPane.PLAIN_MESSAGE,
                    JOptionPane.QUESTION_MESSAGE,
                    null,
@@ -331,7 +343,7 @@ public class InserirCriancas extends javax.swing.JFrame {
        
         }else{
         
-            int selectedOption = JOptionPane.showConfirmDialog(null,"Você deseja realmente sair do Sistema Vaccinare?", "Sistema Vaccinare:", JOptionPane.YES_NO_OPTION);
+            int selectedOption = JOptionPane.showConfirmDialog(null,"Você deseja mesmo inserir?", "Sistema Vaccinare:", JOptionPane.YES_NO_OPTION);
             if(selectedOption == JOptionPane.YES_OPTION){
                 c = new Crianca(nome, idade, sexo, natural, mae, etnia);
                 CriancaDAO cd = new CriancaDAO();
@@ -351,21 +363,7 @@ public class InserirCriancas extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_botaoConfirmaActionPerformed
 
-    public void carregaComboBox() {
-
-       
-        Sexo sex = null;
-        Sexo s1 = sex.FEMININO;
-        Sexo s2 = sex.MASCULINO;
-        
-        ArrayList<Sexo> lista = new ArrayList<>();
-        lista.add(s1);
-        lista.add(s2);
-       
-        for (Sexo s : lista) {
-            selecionarSexo.addItem(String.valueOf(s.ordinal()));
-        }
-    } 
+    
     
     /**
      * @param args the command line arguments
@@ -411,6 +409,8 @@ public class InserirCriancas extends javax.swing.JFrame {
     private javax.swing.JTextField campoNome;
     private javax.swing.JRadioButton checkboxParto;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
