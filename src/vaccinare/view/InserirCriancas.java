@@ -5,6 +5,8 @@
  */
 package vaccinare.view;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import vaccinare.dao.CriancaDAO;
 import vaccinare.model.Crianca;
@@ -145,6 +147,11 @@ public class InserirCriancas extends javax.swing.JFrame {
         jLabel8.setText("CRIANÇAS");
 
         botaoConfirma.setText("Confirma");
+        botaoConfirma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoConfirmaActionPerformed(evt);
+            }
+        });
 
         botaoCancela.setText("Cancela");
 
@@ -250,7 +257,7 @@ public class InserirCriancas extends javax.swing.JFrame {
                     .addComponent(selecionarIndigena)
                     .addComponent(selecionarAmarela)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -270,29 +277,16 @@ public class InserirCriancas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoIDActionPerformed
 
-    public void carregaComboBox() {
-
-       
-        Sexo sex = null;
-        Sexo s1 = sex.FEMININO;
-        Sexo s2 = sex.MASCULINO;
-        
-        ArrayList<Sexo> lista = new ArrayList<>();
-        lista.add(s1);
-        lista.add(s2);
-       
-        for (Sexo s : lista) {
-            selecionarSexo.addItem(String.valueOf(s.ordinal()));
-        }
-    }
-    
-    private void botaoConfirmaActionPerformed(java.awt.event.ActionEvent evt) throws Exception {                                        
+    private void botaoConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfirmaActionPerformed
         Crianca c;
         
         String nome = campoNome.getText();
-        int idade = Integer.parseInt(campoIdade.getText());
         
-        
+        int idade = 0;
+        if(campoIdade.getText().length() > 0)
+        {
+            idade = Integer.parseInt(campoIdade.getText());
+        }
         
         Sexo sexo = null;
         if (selecionarSexo.getSelectedItem()==MASCULINO){
@@ -341,14 +335,37 @@ public class InserirCriancas extends javax.swing.JFrame {
             if(selectedOption == JOptionPane.YES_OPTION){
                 c = new Crianca(nome, idade, sexo, natural, mae, etnia);
                 CriancaDAO cd = new CriancaDAO();
-                cd.inserir(c);  	                	
+                try {  	                	
+                    cd.inserir(c);
+                } catch (Exception ex) {
+                        Object[] options = {"OK"};
+                        JOptionPane.showOptionDialog(null,
+                                           "Erro","erro",
+                                           JOptionPane.PLAIN_MESSAGE,
+                                           JOptionPane.ERROR_MESSAGE,
+                                           null,
+                                           options,
+                                           options[0]);
+                }
             }
-        }
-    }                                       
+        }        
+    }//GEN-LAST:event_botaoConfirmaActionPerformed
+
+    public void carregaComboBox() {
 
        
+        Sexo sex = null;
+        Sexo s1 = sex.FEMININO;
+        Sexo s2 = sex.MASCULINO;
         
-    
+        ArrayList<Sexo> lista = new ArrayList<>();
+        lista.add(s1);
+        lista.add(s2);
+       
+        for (Sexo s : lista) {
+            selecionarSexo.addItem(String.valueOf(s.ordinal()));
+        }
+    } 
     
     /**
      * @param args the command line arguments
